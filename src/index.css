@@ -1,0 +1,86 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #747bff;
+  --primary-color-hover: #5a67d8;
+
+  --app-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --column-bg: #ffffff;
+  --column-bg-hover: #f8f9fa;
+  --input-bg: #ffffff;
+  --stat-bg: #ffffff;
+  --count-bg: #f1f3f4;
+
+  --text-color: #213547;
+  --text-muted: #666;
+
+  --border-color: #e1e5e9;
+
+  --accent-purple: #9d4edd;
+  --accent-red: #ff6b6b;
+  --accent-red-light: rgba(255, 107, 107, 0.1);
+  --accent-red-medium: rgba(255, 107, 107, 0.2);
+  --accent-red-border: rgba(255, 107, 107, 0.3);
+
+  --shadow-primary: rgba(116, 123, 255, 0.1);
+  --shadow-primary-hover: rgba(116, 123, 255, 0.15);
+  --shadow-dark: rgba(0, 0, 0, 0.1);
+  --shadow-darker: rgba(0, 0, 0, 0.1);
+
+  --link-color: #747bff;
+  --link-hover: #5a67d8;
+
+  --button-bg: #f9f9f9;
+  --button-hover-border: #747bff;
+
+  color: var(--text-color);
+  background-color: var(--app-bg);
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
