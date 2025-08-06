@@ -1,69 +1,69 @@
-# React + TypeScript + Vite
+# React Drag & Drop Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Todo application built with React and TypeScript, featuring intuitive drag-and-drop functionality for task management. This app is built without any UI libraries - just pure React components with custom styling and the `@atlaskit/pragmatic-drag-and-drop` library for seamless drag-and-drop interactions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✨ **Pure React Components** - No UI libraries, just custom-built components
+- 🎯 **Drag & Drop Functionality** - Powered by Atlaskit's pragmatic-drag-and-drop
+- 📝 **Task Management** - Create, edit, delete, and reorder todos
+- 🎨 **Modern UI** - Clean, responsive design with smooth animations
+- ⚡ **Fast Development** - Built with Vite for lightning-fast hot reload
+- 🔧 **TypeScript** - Full type safety throughout the application
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19** - Latest React with hooks and modern patterns
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool and dev server
+- **@atlaskit/pragmatic-drag-and-drop** - Professional drag-and-drop library
+- **CSS Modules** - Scoped styling for components
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Before you begin, ensure you have the following installed:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Node.js** (version 18 or higher)
+- **npm** (comes with Node.js)
+
+## Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/JohnTheParasite/react-drag-n-drop-todo.git
+   cd react-drag-n-drop-todo-list
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:5173` to view the application
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the project for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check code quality
+
+## Project Structure
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+src/
+├── components/     # Reusable UI components
+├── features/       # Feature-specific components and logic
+├── types/          # TypeScript type definitions
+├── constants/      # Application constants
+└── App.tsx         # Main application component
 ```
