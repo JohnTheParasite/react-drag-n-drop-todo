@@ -3,6 +3,7 @@ import { TodoFilter } from "@/constants";
 import { v4 as uuid } from "uuid";
 import { useCallback, useState, useRef, useEffect, useMemo } from "react";
 import type { TodoItem as TodoItemType } from "@/types/todo";
+import React from "react";
 
 const useManageTodoBoardHeader = (
   columns: TodoColumnType[],
@@ -33,6 +34,17 @@ const useManageTodoBoardHeader = (
       setNewColumnTitle(value);
     },
     []
+  );
+
+  const handleAddColumnKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        handleAddColumn();
+      } else if (e.key === "Escape") {
+        setNewColumnTitle("");
+      }
+    },
+    [handleAddColumn]
   );
 
   const handleSetFilterAll = useCallback(() => {
@@ -177,6 +189,7 @@ const useManageTodoBoardHeader = (
     handleToggleDropdown,
     handleSetColumnTitle,
     handleAddColumn,
+    handleAddColumnKeyPress,
     handleSetFilterAll,
     handleSetFilterCompleted,
     handleSetFilterIncomplete,

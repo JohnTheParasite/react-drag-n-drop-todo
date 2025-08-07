@@ -35,6 +35,7 @@ export const TodoBoardHeader = ({
     handleToggleDropdown,
     handleSetColumnTitle,
     handleAddColumn,
+    handleAddColumnKeyPress,
     handleSetFilterAll,
     handleSetFilterCompleted,
     handleSetFilterIncomplete,
@@ -102,6 +103,7 @@ export const TodoBoardHeader = ({
               <TextInput
                 value={newColumnTitle}
                 onChange={handleSetColumnTitle}
+                onKeyDown={handleAddColumnKeyPress}
                 placeholder="Enter column title..."
               />
               <Button
