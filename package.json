@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "nvm use 22.16.0",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
