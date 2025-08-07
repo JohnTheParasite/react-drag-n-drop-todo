@@ -12,8 +12,8 @@ export function highlightText(text: string, searchTerm: string) {
   return parts.map((part, index) => {
     if (part.toLowerCase() === searchTerm.toLowerCase()) {
       return (
-        <span key={index} className={"highlight"}>
-          part
+        <span key={index} className="highlight">
+          {part}
         </span>
       );
     }

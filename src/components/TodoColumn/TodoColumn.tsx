@@ -171,7 +171,11 @@ export const TodoColumn = ({
             onChange={handleSetNewTodoText}
             placeholder="Add a new task..."
           />
-          <Button className={css.addTodoButton} onClick={handleAddTodo}>
+          <Button
+            className={css.addTodoButton}
+            onClick={handleAddTodo}
+            disabled={!newTodoText.trim()}
+          >
             +
           </Button>
         </div>

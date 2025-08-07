@@ -1,5 +1,4 @@
 .board {
-  min-height: 100vh;
   background: var(--app-bg);
   padding: 20px;
   display: flex;
