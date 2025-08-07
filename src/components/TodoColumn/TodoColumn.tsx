@@ -59,6 +59,7 @@ export const TodoColumn = ({
     handleSetNewTodoText,
     handleEditColumnTitle,
     handleAddTodo,
+    handleNewTodoKeyPress,
     handleEditTitle,
     handleTitleKeyPress,
     handleSetEditTitle,
@@ -169,6 +170,7 @@ export const TodoColumn = ({
           <TextInput
             value={newTodoText}
             onChange={handleSetNewTodoText}
+            onKeyDown={handleNewTodoKeyPress}
             placeholder="Add a new task..."
           />
           <Button

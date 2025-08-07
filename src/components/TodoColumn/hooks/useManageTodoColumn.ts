@@ -69,6 +69,17 @@ const useManageTodoColumn = (
     }
   }, [column.id, newTodoText, onAddTodo]);
 
+  const handleNewTodoKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        handleAddTodo();
+      } else if (e.key === "Escape") {
+        setNewTodoText("");
+      }
+    },
+    [handleAddTodo]
+  );
+
   const handleEditTitle = useCallback(() => {
     if (isEditingTitle) {
       if (editTitle.trim() !== column.title && editTitle.trim() !== "") {
@@ -250,6 +261,7 @@ const useManageTodoColumn = (
     handleSetNewTodoText,
     handleEditColumnTitle,
     handleAddTodo,
+    handleNewTodoKeyPress,
     handleEditTitle,
     handleTitleKeyPress,
     handleSetEditTitle,
