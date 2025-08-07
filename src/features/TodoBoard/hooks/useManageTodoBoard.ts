@@ -14,11 +14,13 @@ const initialColumns: TodoColumnType[] = [
         id: uuid(),
         text: "Buy a new phone",
         isCompleted: false,
+        isSelected: false,
       },
       {
         id: uuid(),
         text: "Buy a new laptop",
         isCompleted: false,
+        isSelected: false,
       },
     ],
   },
@@ -30,11 +32,13 @@ const initialColumns: TodoColumnType[] = [
         id: uuid(),
         text: "Finish the project",
         isCompleted: false,
+        isSelected: false,
       },
       {
         id: uuid(),
         text: "Have a meeting with the team",
         isCompleted: true,
+        isSelected: false,
       },
     ],
   },
@@ -46,11 +50,13 @@ const initialColumns: TodoColumnType[] = [
         id: uuid(),
         text: "Buy a new fridge",
         isCompleted: false,
+        isSelected: false,
       },
       {
         id: uuid(),
         text: "Buy a new TV",
         isCompleted: true,
+        isSelected: false,
       },
     ],
   },
@@ -61,6 +67,7 @@ const useManageTodoBoard = () => {
   const [columns, setColumns] = useState<TodoColumnType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(TodoFilter.ALL);
+  const [isSelectMode, setIsSelectMode] = useState(false);
 
   const handleDeleteColumn = useCallback(
     (columnId: string) =>
@@ -85,6 +92,7 @@ const useManageTodoBoard = () => {
         id: uuid(),
         text,
         isCompleted: false,
+        isSelected: false,
       };
 
       setColumns(
@@ -237,6 +245,67 @@ const useManageTodoBoard = () => {
     [columns]
   );
 
+  const handleToggleSelection = useCallback(
+    (columnId: string, todoId: string) => {
+      setColumns((prevColumns) =>
+        prevColumns.map((column) => {
+          if (column.id === columnId) {
+            return {
+              ...column,
+              todos: column.todos.map((todo) =>
+                todo.id === todoId
+                  ? { ...todo, isSelected: !todo.isSelected }
+                  : todo
+              ),
+            };
+          }
+          return column;
+        })
+      );
+    },
+    [setColumns]
+  );
+
+  const handleSelectAllInColumn = useCallback(
+    (columnId: string) => {
+      setColumns((prevColumns) =>
+        prevColumns.map((column) => {
+          if (column.id === columnId) {
+            return {
+              ...column,
+              todos: column.todos.map((todo) => ({
+                ...todo,
+                isSelected: true,
+              })),
+            };
+          }
+          return column;
+        })
+      );
+    },
+    [setColumns]
+  );
+
+  const handleDeselectAllInColumn = useCallback(
+    (columnId: string) => {
+      setColumns((prevColumns) =>
+        prevColumns.map((column) => {
+          if (column.id === columnId) {
+            return {
+              ...column,
+              todos: column.todos.map((todo) => ({
+                ...todo,
+                isSelected: false,
+              })),
+            };
+          }
+          return column;
+        })
+      );
+    },
+    [setColumns]
+  );
+
   useEffect(() => {
     const element = boardRef.current;
     if (!element) return;
@@ -311,10 +380,11 @@ const useManageTodoBoard = () => {
   return {
     boardRef,
     columns,
-    setColumns,
-    searchTerm,
-    setSearchTerm,
     filter,
+    searchTerm,
+    isSelectMode,
+    setColumns,
+    setSearchTerm,
     setFilter,
     handleDeleteColumn,
     handleEditColumnTitle,
@@ -323,6 +393,10 @@ const useManageTodoBoard = () => {
     handleEditTodo,
     handleDeleteTodo,
     handleMoveTodo,
+    setIsSelectMode,
+    handleToggleSelection,
+    handleSelectAllInColumn,
+    handleDeselectAllInColumn,
   };
 };
 

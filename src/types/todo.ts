@@ -2,6 +2,7 @@ export interface TodoItem {
   id: string;
   text: string;
   isCompleted: boolean;
+  isSelected: boolean;
 }
 
 export interface TodoColumn {

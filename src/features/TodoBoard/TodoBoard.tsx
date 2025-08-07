@@ -7,10 +7,11 @@ export const TodoBoard = () => {
   const {
     boardRef,
     columns,
-    setColumns,
-    searchTerm,
-    setSearchTerm,
     filter,
+    searchTerm,
+    isSelectMode,
+    setColumns,
+    setSearchTerm,
     setFilter,
     handleDeleteColumn,
     handleEditColumnTitle,
@@ -19,6 +20,10 @@ export const TodoBoard = () => {
     handleEditTodo,
     handleDeleteTodo,
     handleMoveTodo,
+    setIsSelectMode,
+    handleToggleSelection,
+    handleSelectAllInColumn,
+    handleDeselectAllInColumn,
   } = useManageTodoBoard();
 
   return (
@@ -30,6 +35,8 @@ export const TodoBoard = () => {
         setSearchTerm={setSearchTerm}
         filter={filter}
         setFilter={setFilter}
+        isSelectMode={isSelectMode}
+        setIsSelectMode={setIsSelectMode}
       />
 
       {columns.length > 0 && (
@@ -49,6 +56,10 @@ export const TodoBoard = () => {
                 onEditColumnTitle={handleEditColumnTitle}
                 searchTerm={searchTerm}
                 filter={filter}
+                isSelectMode={isSelectMode}
+                onToggleSelection={handleToggleSelection}
+                onSelectAllInColumn={handleSelectAllInColumn}
+                onDeselectAllInColumn={handleDeselectAllInColumn}
               />
             ))}
           </div>

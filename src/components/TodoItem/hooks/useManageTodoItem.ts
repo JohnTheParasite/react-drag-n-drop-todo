@@ -9,7 +9,8 @@ const useManageTodoItem = (
   columnId: string,
   onEdit: (todoId: string, newText: string) => void,
   onDelete: (todoId: string) => void,
-  onToggleComplete: (todoId: string) => void
+  onToggleComplete: (todoId: string) => void,
+  onToggleSelection: (todoId: string) => void
 ) => {
   const ref = useRef<HTMLDivElement>(null);
   const dragHandleRef = useRef<HTMLDivElement>(null);
@@ -58,6 +59,10 @@ const useManageTodoItem = (
     () => onToggleComplete(todo.id),
     [todo.id, onToggleComplete]
   );
+  const handleToggleSelection = useCallback(
+    () => onToggleSelection(todo.id),
+    [todo.id, onToggleSelection]
+  );
 
   useEffect(() => {
     const element = ref.current;
@@ -96,6 +101,7 @@ const useManageTodoItem = (
     handleOnBlur,
     handleKeyPress,
     handleApplyChanges,
+    handleToggleSelection,
   };
 };
 

@@ -25,6 +25,10 @@ type Props = {
   onEditColumnTitle: (columnId: string, newTitle: string) => void;
   searchTerm: string;
   filter: TodoFilter;
+  isSelectMode: boolean;
+  onToggleSelection: (columnId: string, todoId: string) => void;
+  onSelectAllInColumn: (columnId: string) => void;
+  onDeselectAllInColumn: (columnId: string) => void;
 };
 
 export const TodoColumn = ({
@@ -39,6 +43,10 @@ export const TodoColumn = ({
   onEditColumnTitle,
   searchTerm,
   filter,
+  isSelectMode = false,
+  onToggleSelection,
+  onSelectAllInColumn,
+  onDeselectAllInColumn,
 }: Props) => {
   const {
     ref,
@@ -58,6 +66,7 @@ export const TodoColumn = ({
     filteredTodos,
     completedCount,
     totalCount,
+    selectedTodosInColumn,
   } = useManageTodoColumn(
     column,
     columnIndex,
@@ -100,12 +109,15 @@ export const TodoColumn = ({
             onKeyDown={handleTitleKeyPress}
           />
         ) : (
-          <h3 className={css.columnTitle} onDoubleClick={handleSetEditTitle}>
+          <h3
+            className={css.columnTitle}
+            onDoubleClick={isSelectMode ? undefined : handleSetEditTitle}
+          >
             {column.title}
           </h3>
         )}
 
-        {!isEditingTitle && (
+        {!isEditingTitle && !isSelectMode && (
           <div className={css.columnActions}>
             <span className={css.todoCount}>
               {completedCount}/{totalCount}
@@ -128,16 +140,42 @@ export const TodoColumn = ({
         )}
       </div>
 
-      <div className={css.addTodoForm}>
-        <TextInput
-          value={newTodoText}
-          onChange={handleSetNewTodoText}
-          placeholder="Add a new task..."
-        />
-        <Button className={css.addTodoButton} onClick={handleAddTodo}>
-          +
-        </Button>
-      </div>
+      {isSelectMode && (
+        <div className={css.columnSelectionControls}>
+          <div className={css.selectionInfo}>
+            <span className={css.selectedCount}>
+              {selectedTodosInColumn} selected
+            </span>
+          </div>
+          <div className={css.selectionButtons}>
+            <Button
+              onClick={() => onSelectAllInColumn(column.id)}
+              className={css.selectionButton}
+            >
+              Select All
+            </Button>
+            <Button
+              onClick={() => onDeselectAllInColumn(column.id)}
+              className={css.selectionButton}
+            >
+              Deselect All
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {!isSelectMode && (
+        <div className={css.addTodoForm}>
+          <TextInput
+            value={newTodoText}
+            onChange={handleSetNewTodoText}
+            placeholder="Add a new task..."
+          />
+          <Button className={css.addTodoButton} onClick={handleAddTodo}>
+            +
+          </Button>
+        </div>
+      )}
 
       <div className={css.todoList} data-testid="todo-list">
         {filteredTodos.length === 0 ? (
@@ -160,6 +198,10 @@ export const TodoColumn = ({
                     onEditTodo(column.id, todoId, newText)
                   }
                   onDelete={(todoId) => onDeleteTodo(column.id, todoId)}
+                  isSelectMode={isSelectMode}
+                  onToggleSelection={(todoId) =>
+                    onToggleSelection(column.id, todoId)
+                  }
                 />
               </React.Fragment>
             ))}

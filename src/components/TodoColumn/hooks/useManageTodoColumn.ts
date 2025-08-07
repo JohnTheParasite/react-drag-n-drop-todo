@@ -106,6 +106,10 @@ const useManageTodoColumn = (
     []
   );
 
+  const selectedTodosInColumn = column.todos.filter(
+    (todo) => todo.isSelected
+  ).length;
+
   useEffect(() => {
     const element = ref.current;
     const columnDragHandle = columnDragHandleRef.current;
@@ -253,6 +257,7 @@ const useManageTodoColumn = (
     filteredTodos,
     completedCount,
     totalCount,
+    selectedTodosInColumn,
   };
 };
 
