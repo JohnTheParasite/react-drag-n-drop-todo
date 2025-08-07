@@ -202,6 +202,7 @@ export const TodoColumn = ({
                   onToggleSelection={(todoId) =>
                     onToggleSelection(column.id, todoId)
                   }
+                  searchTerm={searchTerm}
                 />
               </React.Fragment>
             ))}

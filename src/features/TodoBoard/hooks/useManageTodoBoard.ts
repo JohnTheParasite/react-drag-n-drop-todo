@@ -358,11 +358,8 @@ const useManageTodoBoard = () => {
         const parsedData = JSON.parse(savedData);
         const restoredColumns = parsedData.map((column: any) => ({
           ...column,
-          createdAt: new Date(column.createdAt),
           todos: column.todos.map((todo: any) => ({
             ...todo,
-            createdAt: new Date(todo.createdAt),
-            updatedAt: new Date(todo.updatedAt),
           })),
         }));
         setColumns(restoredColumns);

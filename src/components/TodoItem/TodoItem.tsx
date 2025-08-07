@@ -4,6 +4,7 @@ import { type TodoItem as TodoItemType } from "@/types";
 import useManageTodoItem from "./hooks/useManageTodoItem";
 import classcat from "classcat";
 import css from "./TodoItem.module.css";
+import { highlightText } from "@/utils/highlightText";
 
 type Props = {
   todo: TodoItemType;
@@ -13,6 +14,7 @@ type Props = {
   onDelete: (todoId: string) => void;
   isSelectMode: boolean;
   onToggleSelection: (todoId: string) => void;
+  searchTerm?: string;
 };
 
 export const TodoItem = ({
@@ -23,6 +25,7 @@ export const TodoItem = ({
   onDelete,
   isSelectMode = false,
   onToggleSelection,
+  searchTerm = "",
 }: Props) => {
   const {
     ref,
@@ -82,7 +85,7 @@ export const TodoItem = ({
             className={css.todoText}
             onDoubleClick={isSelectMode ? undefined : handleEdit}
           >
-            {todo.text}
+            {highlightText(todo.text, searchTerm)}
           </span>
         )}
 
