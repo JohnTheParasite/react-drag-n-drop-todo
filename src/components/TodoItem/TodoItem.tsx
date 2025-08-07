@@ -60,13 +60,13 @@ export const TodoItem = ({
           [css.selected]: todo.isSelected,
         },
       ])}
+      onClick={isSelectMode ? handleToggleSelection : undefined}
     >
       <div className={css.todoContent}>
         {isSelectMode && (
           <input
             type="checkbox"
             checked={todo.isSelected}
-            onChange={handleToggleSelection}
             className={css.selectionCheckbox}
             title="Select todo"
           />
