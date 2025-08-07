@@ -266,44 +266,48 @@ const useManageTodoBoard = () => {
     [setColumns]
   );
 
-  const handleSelectAllInColumn = useCallback(
-    (columnId: string) => {
+  const handleSelectionInColumn = useCallback(
+    (columnId: string, isSelected: boolean) => {
       setColumns((prevColumns) =>
         prevColumns.map((column) => {
           if (column.id === columnId) {
             return {
               ...column,
-              todos: column.todos.map((todo) => ({
-                ...todo,
-                isSelected: true,
-              })),
+              todos: column.todos.map((todo) => {
+                const matchesSearch = todo.text
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase());
+                const matchesFilter =
+                  filter === TodoFilter.ALL ||
+                  (filter === TodoFilter.COMPLETED && todo.isCompleted) ||
+                  (filter === TodoFilter.INCOMPLETE && !todo.isCompleted);
+
+                if (matchesSearch && matchesFilter) {
+                  return { ...todo, isSelected };
+                }
+                return todo;
+              }),
             };
           }
           return column;
         })
       );
     },
-    [setColumns]
+    [setColumns, searchTerm, filter]
+  );
+
+  const handleSelectAllInColumn = useCallback(
+    (columnId: string) => {
+      handleSelectionInColumn(columnId, true);
+    },
+    [handleSelectionInColumn]
   );
 
   const handleDeselectAllInColumn = useCallback(
     (columnId: string) => {
-      setColumns((prevColumns) =>
-        prevColumns.map((column) => {
-          if (column.id === columnId) {
-            return {
-              ...column,
-              todos: column.todos.map((todo) => ({
-                ...todo,
-                isSelected: false,
-              })),
-            };
-          }
-          return column;
-        })
-      );
+      handleSelectionInColumn(columnId, false);
     },
-    [setColumns]
+    [handleSelectionInColumn]
   );
 
   useEffect(() => {
