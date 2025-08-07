@@ -2,6 +2,12 @@
 
 Todo application built with React and TypeScript, featuring intuitive drag-and-drop functionality for task management. This app is built without any UI libraries - just pure React components with custom styling and the `@atlaskit/pragmatic-drag-and-drop` library for seamless drag-and-drop interactions.
 
+## 🚀 Live Demo
+
+**[Try the app live here!](https://johntheparasite.github.io/react-drag-n-drop-todo/)**
+
+Experience the drag-and-drop functionality and task management features in action.
+
 ## Features
 
 - ✨ **Pure React Components** - No UI libraries, just custom-built components
