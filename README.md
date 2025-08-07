@@ -65,5 +65,6 @@ src/
 ├── features/       # Feature-specific components and logic
 ├── types/          # TypeScript type definitions
 ├── constants/      # Application constants
+├── utils/          # Utility functions and helpers
 └── App.tsx         # Main application component
 ```
