@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 
    ```bash
    git clone https://github.com/JohnTheParasite/react-drag-n-drop-todo.git
-   cd react-drag-n-drop-todo-list
+   cd react-drag-n-drop-todo
    ```
 
 2. **Install dependencies**
